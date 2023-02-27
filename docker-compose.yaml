@@ -1,0 +1,17 @@
+version: "3"
+services:
+
+  mssql:
+    container_name: sqlserverwithvolumes
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - '1434:1433'
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Standard
+      - SA_PASSWORD=P@ssword
+      - MSSQL_AGENT_ENABLED=true
+    volumes:
+        - ./data/mssql-data:/var/opt/mssql/data
+        - ./data/mssql-data:/var/opt/mssql/log
+        - ./data/mssql-data:/var/opt/mssql/backup
